@@ -1,72 +1,130 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HTML Header Tag Tutorial</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bootstrap Code Playground</title>
+
+<!-- Bootstrap CDN -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+body {
+    background-color: #0f172a;
+    color: white;
+}
+
+/* Editor Styling */
+textarea {
+    height: 300px;
+    font-family: monospace;
+    background-color: #020617;
+    color: #38bdf8;
+    border: none;
+    outline: none;
+}
+
+/* Output iframe */
+iframe {
+    height: 300px;
+    background: white;
+    border: none;
+}
+
+/* Card dark theme */
+.card {
+    background-color: #020617;
+    border: 1px solid #1e293b;
+}
+</style>
 
 </head>
+
 <body>
 
-    <!-- Top Section -->
-    <header>
-        <h1>HTML Tutorial: Module 1</h1>
-        <p>Learn how to structure your web content correctly.</p>
-    </header>
+<!-- Header -->
+<header class="text-center p-3 border-bottom border-secondary">
+    <h2>HTML Tutorial Playground</h2>
+    <p>Practice your code live using Bootstrap UI</p>
+</header>
 
-    <main class="main-content">
-        
-        <article>
-            <h2>Understanding &lt;h1&gt; to &lt;h6&gt;</h2>
-            <p>HTML <strong>Header tags</strong> are used to define headings on a webpage. They range from 1 to 6, indicating the level of importance and size.</p>
-            
-            <p>A few key rules to remember:</p>
-            <ul>
-                <li><span>H1</span> is the most important (usually the main page title).</li>
-                <li><span>H2 - H6</span> are used for subheadings to organize content.</li>
-                <li>Never skip levels (e.g., don't jump from H1 to H3).</li>
-            </ul>
-            <p>Proper use of these tags helps <em>Search Engines</em> (SEO) and <em>Screen Readers</em> understand your page layout.</p>
-        </article>
+<div class="container-fluid mt-3">
 
-        <div class="editor-box"><table><tr>
-            <td>
-             <textarea >
+    <div class="row g-3">
 
+        <!-- Editor Section -->
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">Code Editor</div>
+                <div class="card-body">
 
-  <h1>This is a Level 1 Heading(h1 tag)</h1>
-  <p>This is the main introduction.</p>
+<textarea id="code" class="form-control">
+<h1>This is a Level 1 Heading</h1>
+<p>This is the main introduction.</p>
 
-  <h2>This is a Level 2 Heading(h2 tag)</h2>
-  <p>This is a sub-topic under the main title.</p>
+<h2>This is a Level 2 Heading</h2>
+<p>This is a sub-topic under the main title.</p>
 
-  <h3>This is a Level 3 Heading(h3 tag)</h3>
-  <p>This is a specific detail under H2.</p>
+<h3>This is a Level 3 Heading</h3>
+<p>This is a specific detail under H2.</p>
+</textarea>
 
-             </textarea>
-         </td>
+                    <div class="mt-3">
+                        <button class="btn btn-info" onclick="runCode()">Run</button>
+                        <button class="btn btn-danger" onclick="clearCode()">Clear</button>
 
-         <td style="border: 1px solid ;">
-            <header>Ouput: </header>
-               <h1>This is a Level 1 Heading(h1 tag)</h1>
-  <p>This is the main introduction.</p>
+                        <div class="form-check form-switch d-inline ms-3">
+                            <input class="form-check-input" type="checkbox" id="autoRun">
+                            <label class="form-check-label">Auto Run</label>
+                        </div>
+                    </div>
 
-  <h2>This is a Level 2 Heading(h2 tag)</h2>
-  <p>This is a sub-topic under the main title.</p>
-
-  <h3>This is a Level 3 Heading(h3 tag)</h3>
-  <p>This is a specific detail under H2.</p>
-         </td>
-         </tr></table>
+                </div>
+            </div>
         </div>
 
-    </main>
+        <!-- Output Section -->
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">Output</div>
+                <div class="card-body p-0">
+                    <iframe id="output" class="w-100"></iframe>
+                </div>
+            </div>
+        </div>
 
-    <footer>
-        <p>
-            <strong>Conclusion:</strong> Headers are the "skeleton" of your content. By using them correctly, you make your website easier to read for humans and easier to index for machines. Happy coding!
-        </p>
-    </footer>
+    </div>
+
+</div>
+
+<footer class="text-center mt-3 p-2 border-top border-secondary">
+    <p>Practice makes perfect 🚀</p>
+</footer>
+
+<script>
+const codeArea = document.getElementById("code");
+const output = document.getElementById("output");
+const autoRun = document.getElementById("autoRun");
+
+function runCode() {
+    output.srcdoc = codeArea.value;
+}
+
+function clearCode() {
+    codeArea.value = "";
+    output.srcdoc = "";
+}
+
+/* Auto Run */
+codeArea.addEventListener("input", () => {
+    if (autoRun.checked) {
+        runCode();
+    }
+});
+
+/* Run on load */
+runCode();
+</script>
 
 </body>
 </html>
